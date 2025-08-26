@@ -10,8 +10,8 @@
   {
     "id": 2,
     "date": "2023-11-02T12:24:56Z",
-    "name": "7zwkmZ6gVI8KcW5D3GPD0aE7i2PsMgybR8BuCK8CRg==",
-    "amount": 16903,
+    "name": "w2x///7qqfjd/Jl5V4bZaQWljcLTD9I6aCRDCTb8XA==",
+    "amount": -520,
     "country": "Brasil",
     "agent": "XYZ"
   },
@@ -26,8 +26,8 @@
   {
     "id": 4,
     "date": "2026-10-10T05:28:18Z",
-    "name": "glsg0vs4Ubcx4dK3v/D7M9UhwLK1+XD1VAMzajw=",
-    "amount": 1839,
+    "name": "r48ObO/AeN5ImNPj1xwqZpjdMzfkI6GXsxNxQZI=",
+    "amount": -5002,
     "country": "Uruguay",
     "agent": "ABC"
   },
@@ -67,7 +67,7 @@
     "id": 9,
     "date": "2025-10-16T03:09:49Z",
     "name": "bVxbrGgzp5oSfsstUJ7g1qAstthiYadgJiNijWkPsSA=",
-    "amount": 5697,
+    "amount": -800,
     "country": "Perú",
     "agent": "XYZ"
   },
@@ -56227,7 +56227,7 @@
     "id": 7029,
     "date": "2024-10-12T06:42:14Z",
     "name": "tZnDJ7ODRHHjw1bTZPRnAJNuLOQ5bCWfPHWpjaY=",
-    "amount": 5119,
+    "amount": -800,
     "country": "Chile",
     "agent": "XYZ"
   },
@@ -56251,7 +56251,7 @@
     "id": 7032,
     "date": "2023-11-12T12:03:20Z",
     "name": "eILZaBTWKkOFFE5Ab6AP/qqurMsTMW7xDZ7L",
-    "amount": 7469,
+    "amount": -800,
     "country": "Uruguay",
     "agent": "ABC"
   },
@@ -56339,7 +56339,7 @@
     "id": 7043,
     "date": "2024-03-23T12:26:37Z",
     "name": "A8t1HruY7yIwqGdGuhBtbMQsrXjKaCyWs4SvUVn2zg==",
-    "amount": 5393,
+    "amount": -800,
     "country": "Perú",
     "agent": "XYZ"
   },
@@ -56427,7 +56427,7 @@
     "id": 7054,
     "date": "2026-04-06T00:30:01Z",
     "name": "CheeOVhIrF+uvqxgmQaBoiaMjgwOy/hHkZIZ9t3l",
-    "amount": 10924,
+    "amount": -10924,
     "country": "Argentina",
     "agent": "GHI"
   },
@@ -56491,7 +56491,7 @@
     "id": 7062,
     "date": "2024-03-22T16:05:57Z",
     "name": "sERLUSMJUw5C5w6VyQxE7RJ9xIiY2E7HuQNx+T1AFw==",
-    "amount": 17222,
+    "amount": -17222,
     "country": "Chile",
     "agent": "GHI"
   },
@@ -56571,7 +56571,7 @@
     "id": 7072,
     "date": "2025-07-06T23:17:18Z",
     "name": "YAZYYTf12V+k8IhgzT/vXIvtMWtU6PBY3HA=",
-    "amount": 4869,
+    "amount": -4869,
     "country": "Colombia",
     "agent": "XYZ"
   },
