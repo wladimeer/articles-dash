@@ -18,10 +18,14 @@ const ArticlesTable = () => {
 
   const toggleSort = (field: 'date' | 'amount') => {
     if (sortBy === field) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+      if (sortDirection === 'asc') {
+        setSortDirection('desc')
+      } else if (sortDirection === 'desc') {
+        setSortBy(null)
+      }
     } else {
       setSortBy(field)
-      setSortDirection('desc')
+      setSortDirection('asc')
     }
   }
 
@@ -61,11 +65,22 @@ const ArticlesTable = () => {
   return (
     <div>
       <div className="flex gap-2 mb-2">
-        <button onClick={() => toggleSort('date')} className="px-2 py-1 border rounded">
+        <button
+          onClick={() => toggleSort('date')}
+          className="px-2 py-1 border rounded flex items-center gap-1"
+        >
           Ordenar por Fecha
+          {sortBy === 'date' &&
+            (sortDirection === 'asc' ? '↑' : sortDirection === 'desc' ? '↓' : '')}
         </button>
-        <button onClick={() => toggleSort('amount')} className="px-2 py-1 border rounded">
+
+        <button
+          onClick={() => toggleSort('amount')}
+          className="px-2 py-1 border rounded flex items-center gap-1"
+        >
           Ordenar por Monto
+          {sortBy === 'amount' &&
+            (sortDirection === 'asc' ? '↑' : sortDirection === 'desc' ? '↓' : '')}
         </button>
 
         <input
