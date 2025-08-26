@@ -1,5 +1,6 @@
 import { getFormArticle } from '../utils/validationSchemas'
 import type { ArticleRowProps } from '../interfaces/article-row-props.interface'
+import { ARTICLE_STATUS } from '../constants/states'
 import { useArticleStore } from '../store/article'
 import { STATES } from '../constants/response'
 import type { ValidationError } from 'yup'
@@ -71,7 +72,24 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
 
               <span>{article.country}</span>
               <span>{article.agent}</span>
-              <span>{article.status}</span>
+
+              <div className="flex items-center gap-1">
+                <span>{article.status}</span>
+                {article.statusNumber !== ARTICLE_STATUS.VALID && (
+                  <span
+                    title={
+                      article.statusNumber === ARTICLE_STATUS.INVALID
+                        ? 'Monto negativo o fecha inválida'
+                        : article.statusNumber === ARTICLE_STATUS.PENDING
+                        ? 'Fecha futura, pendiente de procesamiento'
+                        : ''
+                    }
+                    className="text-red-500 cursor-help"
+                  >
+                    ⚠️
+                  </span>
+                )}
+              </div>
             </div>
           </Form>
         </>
