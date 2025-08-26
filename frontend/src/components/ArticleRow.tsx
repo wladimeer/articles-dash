@@ -1,6 +1,6 @@
 import { getFormArticle } from '../utils/validationSchemas'
 import type { ArticleRowProps } from '../interfaces/article-row-props.interface'
-import { updateArticle } from '../api/articles'
+import { useArticleStore } from '../store/article'
 import { STATES } from '../constants/response'
 import type { ValidationError } from 'yup'
 import { toast } from 'react-toastify'
@@ -10,6 +10,7 @@ import dayjs from 'dayjs'
 
 const ArticleRow = ({ article }: ArticleRowProps) => {
   const validationSchema = getFormArticle()
+  const { updateArticle } = useArticleStore()
   const { id, name, amount } = article
   const initialValues = { id, name, amount }
 
