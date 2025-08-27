@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 import { getArticles as apiGetArticles, updateArticle as apiUpdateArticle } from '../api/articles'
-import type { ArticleState } from '../types/article-state.type'
+import type { ArticleStore } from '../interfaces/article.interfaces'
 import { STATES } from '../constants/response'
 
-const useArticleStore = create<ArticleState>((set) => ({
+const useArticleStore = create<ArticleStore>((set) => ({
   articles: [],
   loading: false,
   message: '',

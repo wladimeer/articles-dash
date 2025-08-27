@@ -1,4 +1,4 @@
-import type { Article } from '../types/article.type'
+import type { Article } from './article.interfaces'
 
 interface ArticleRowProps {
   article: Article

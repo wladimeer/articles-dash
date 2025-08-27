@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import type { ArticleState } from '../types/article-state.type'
+import type { ArticleStore } from '../interfaces/article.interfaces'
 import ArticlesTable from '../components/ArticlesTable'
 import type { ReactNode } from 'react'
 
@@ -37,7 +37,7 @@ vi.mock('../store/article', () => ({
       fetchArticles: vi.fn(),
       updateArticle: vi.fn(),
       loading: false
-    } satisfies ArticleState)
+    } satisfies ArticleStore)
 }))
 
 vi.mock('react-virtualized', async () => {

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { ARTICLE_STATUS } from '../constants/states'
 import { List, AutoSizer } from 'react-virtualized'
-import type { Article } from '../types/article.type'
+import type { Article } from '../interfaces/article.interfaces'
 import { useArticleStore } from '../store/article'
 import { removeAccents } from '../utils/strings'
 import EmptyState from './EmptyState'

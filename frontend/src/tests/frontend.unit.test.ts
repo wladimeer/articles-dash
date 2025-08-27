@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import type { ApiResponse } from '../interfaces/api-response'
-import type { Article } from '../types/article.type'
+import type { Article } from '../interfaces/article.interfaces'
 import { removeAccents } from '../utils/strings'
 import { STATES } from '../constants/response'
 
