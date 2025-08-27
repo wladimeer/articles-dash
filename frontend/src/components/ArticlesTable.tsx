@@ -86,7 +86,7 @@ const ArticlesTable = () => {
 
     const rows = filteredArticles.map((a) => [
       a.id,
-      a.date,
+      dayjs(a.date).format('DD-MM-YYYY'),
       a.name,
       a.amount,
       a.amountUSD,
