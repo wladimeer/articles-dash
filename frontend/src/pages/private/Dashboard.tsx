@@ -5,6 +5,7 @@ import InformationModal from '../../components/InformationModal'
 import useInformationModal from '../../hooks/useInformationModal'
 import { Box, Typography, Button } from '@mui/material'
 import { ROUTE_CONFIG } from '../../constants/route'
+import { useThemeStore } from '../../store/theme'
 import { useUserStore } from '../../store/user'
 import { useNavigate } from 'react-router'
 
@@ -14,6 +15,8 @@ const Dashboard = () => {
   const navigate = useNavigate()
 
   const removeUser = useUserStore((state) => state.removeUser)
+
+  const { darkMode, toggleTheme } = useThemeStore()
 
   const handleLogout = async () => {
     setInformationModal({
@@ -68,9 +71,9 @@ const Dashboard = () => {
               variant="outlined"
               color="primary"
               sx={{ flex: { xs: '1 1 100%', md: '0 auto' } }}
-              onClick={() => console.log('Acción futura')}
+              onClick={toggleTheme}
             >
-              Acción
+              {darkMode ? 'Modo Claro' : 'Modo Oscuro'}
             </Button>
 
             <Button

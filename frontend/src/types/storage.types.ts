@@ -1,4 +1,4 @@
-type StorageKey = 'USER'
-type StorageValue = 'user-storage'
+type StorageKey = 'USER' | 'THEME'
+type StorageValue = 'user-storage' | 'app-theme'
 
 export type { StorageKey, StorageValue }
