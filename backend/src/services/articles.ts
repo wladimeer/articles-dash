@@ -15,6 +15,11 @@ const getAllArticles = async (): Promise<ProcessedArticle[]> => {
 
   const processed: ProcessedArticle[] = rawData.map((item: Article) => {
     const { id, date, name, amount, country, agent } = item
+
+    if (!rates[country]) {
+      return null
+    }
+
     const fullName = decrypt(name)
 
     let status: (typeof ARTICLE_STATUS)[keyof typeof ARTICLE_STATUS] = ARTICLE_STATUS.VALID
