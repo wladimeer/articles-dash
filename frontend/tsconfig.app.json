@@ -24,7 +24,7 @@
     "noUncheckedSideEffectImports": true,
 
     /* Module Resolution */
-    "types": ["vitest", "react", "react-dom", "node"],
+    "types": ["react", "react-dom", "node"],
     "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src"]
