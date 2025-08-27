@@ -33,7 +33,7 @@ const InformationModal = ({ informationModal, resetInformationModal }: Informati
         aria-labelledby="information-modal-title"
         aria-describedby="information-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} gap={2} display="flex" flexDirection="column">
           <Typography id="information-modal-title" variant="h6" component="h2">
             {title}
           </Typography>

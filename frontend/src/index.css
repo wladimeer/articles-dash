@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Sans+Condensed:wght@200..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+}

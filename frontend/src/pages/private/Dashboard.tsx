@@ -4,14 +4,13 @@ import ArticlesTable from '../../components/ArticlesTable'
 import InformationModal from '../../components/InformationModal'
 import useInformationModal from '../../hooks/useInformationModal'
 import { Box, Typography, Button } from '@mui/material'
-import EmptyState from '../../components/EmptyState'
 import { ROUTE_CONFIG } from '../../constants/route'
 import { useUserStore } from '../../store/user'
 import { useNavigate } from 'react-router'
 
 const Dashboard = () => {
   const { informationModal, setInformationModal, resetInformationModal } = useInformationModal()
-  const { fetchArticles, loading } = useArticleStore()
+  const { fetchArticles } = useArticleStore()
   const navigate = useNavigate()
 
   const removeUser = useUserStore((state) => state.removeUser)
@@ -44,25 +43,48 @@ const Dashboard = () => {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            mb: 3
+            flexWrap: { xs: 'wrap', md: 'nowrap' },
+            mb: 3,
+            gap: 2
           }}
         >
-          <Typography variant="h4" fontWeight="bold">
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            sx={{ flex: { xs: '1 1 100%', md: '0 auto' } }}
+          >
             Panel de artículos
           </Typography>
 
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Button variant="outlined" color="primary" onClick={() => console.log('Acción futura')}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: { xs: 'wrap', md: 'nowrap' },
+              gap: 1,
+              flex: { xs: '1 1 100%', md: '0 auto' }
+            }}
+          >
+            <Button
+              variant="outlined"
+              color="primary"
+              sx={{ flex: { xs: '1 1 100%', md: '0 auto' } }}
+              onClick={() => console.log('Acción futura')}
+            >
               Acción
             </Button>
 
-            <Button variant="contained" color="error" onClick={handleLogout}>
+            <Button
+              variant="contained"
+              color="error"
+              sx={{ flex: { xs: '1 1 100%', md: '0 auto' } }}
+              onClick={handleLogout}
+            >
               Cerrar sesión
             </Button>
           </Box>
         </Box>
 
-        {loading ? <EmptyState message="Cargando..." /> : <ArticlesTable />}
+        <ArticlesTable />
       </Box>
     </>
   )

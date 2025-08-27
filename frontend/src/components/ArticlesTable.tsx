@@ -21,7 +21,7 @@ import {
 } from '@mui/material'
 
 const ArticlesTable = () => {
-  const { articles, message } = useArticleStore()
+  const { articles, message, loading } = useArticleStore()
 
   const [sortBy, setSortBy] = useState<'date' | 'amount' | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
@@ -114,12 +114,20 @@ const ArticlesTable = () => {
 
   return (
     <Box>
-      <Stack direction="row" spacing={2} mb={2} alignItems="center" flexWrap="wrap">
-        <Button variant="outlined" onClick={() => toggleSort('date')}>
+      <Stack direction="row" flexWrap="wrap" gap={2} rowGap={1} mb={2} alignItems="center">
+        <Button
+          variant="outlined"
+          onClick={() => toggleSort('date')}
+          sx={{ flex: { xs: '1 1 100%', sm: '0 auto' } }}
+        >
           Ordenar por Fecha {sortBy === 'date' && (sortDirection === 'asc' ? '↑' : '↓')}
         </Button>
 
-        <Button variant="outlined" onClick={() => toggleSort('amount')}>
+        <Button
+          variant="outlined"
+          onClick={() => toggleSort('amount')}
+          sx={{ flex: { xs: '1 1 100%', sm: '0 auto' } }}
+        >
           Ordenar por Monto {sortBy === 'amount' && (sortDirection === 'asc' ? '↑' : '↓')}
         </Button>
 
@@ -128,17 +136,18 @@ const ArticlesTable = () => {
           placeholder="Buscar por país o nombre"
           value={search}
           onChange={({ target: { value } }) => setSearch(value)}
+          sx={{ flex: { xs: '1 1 100%', sm: '0 auto' }, minWidth: { sm: 200 } }}
         />
 
-        <FormControl size="small" sx={{ minWidth: 160 }}>
+        <FormControl
+          size="small"
+          sx={{ flex: { xs: '1 1 100%', sm: '0 auto' }, minWidth: { sm: 160 } }}
+        >
           <InputLabel>Estado</InputLabel>
           <Select
             label="Estado"
             value={statusFilter}
-            onChange={(e: SelectChangeEvent) => {
-              const v = e.target.value as string
-              setStatusFilter(v)
-            }}
+            onChange={(e: SelectChangeEvent) => setStatusFilter(e.target.value)}
           >
             <MenuItem value="">Todos los estados</MenuItem>
             <MenuItem value={ARTICLE_STATUS.VALID}>Válido</MenuItem>
@@ -147,38 +156,47 @@ const ArticlesTable = () => {
           </Select>
         </FormControl>
 
-        <Button variant="contained" color="primary" onClick={exportToCSV}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={exportToCSV}
+          sx={{ flex: { xs: '1 1 100%', sm: '0 auto' } }}
+        >
           Exportar CSV
         </Button>
       </Stack>
 
-      <Paper
-        sx={{
-          height: 500,
-          borderRadius: 2,
-          overflow: 'hidden',
-          border: '1px solid #ddd'
-        }}
-      >
-        <AutoSizer>
-          {({ height, width }) => (
-            <List
-              width={width}
-              height={height}
-              rowHeight={50}
-              rowCount={filteredArticles.length}
-              rowRenderer={({ index, style }) => {
-                const article = filteredArticles[index]
-                return (
-                  <Box key={article.id} style={style}>
-                    <ArticleRow article={article} />
-                  </Box>
-                )
-              }}
-            />
-          )}
-        </AutoSizer>
-      </Paper>
+      {loading ? (
+        <EmptyState message="Cargando..." />
+      ) : (
+        <Paper
+          sx={{
+            height: 500,
+            borderRadius: 2,
+            overflow: 'hidden',
+            border: '1px solid #ddd'
+          }}
+        >
+          <AutoSizer>
+            {({ height, width }) => (
+              <List
+                width={width}
+                height={height}
+                rowHeight={50}
+                rowCount={filteredArticles.length}
+                rowRenderer={({ index, style }) => {
+                  const article = filteredArticles[index]
+                  return (
+                    <Box key={article.id} style={style}>
+                      <ArticleRow article={article} />
+                    </Box>
+                  )
+                }}
+              />
+            )}
+          </AutoSizer>
+        </Paper>
+      )}
     </Box>
   )
 }

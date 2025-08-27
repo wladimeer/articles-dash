@@ -54,7 +54,10 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
           <Form>
             <Box
               display="grid"
-              gridTemplateColumns="1fr 1fr 2fr 1fr 1fr 1fr 1fr"
+              gridTemplateColumns={{
+                xs: 'auto 1fr 1fr 1fr',
+                md: '1fr 1fr 2fr 1fr 1fr 1fr 1fr'
+              }}
               alignItems="center"
               gap={1}
               px={2}
@@ -62,7 +65,10 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
               borderBottom="1px solid #ddd"
             >
               <Typography variant="body2">{article.id}</Typography>
-              <Typography variant="body2">{dayjs(article.date).format('DD-MM-YYYY')}</Typography>
+
+              <Typography variant="body2" sx={{ display: { xs: 'none', md: 'block' } }}>
+                {dayjs(article.date).format('DD-MM-YYYY')}
+              </Typography>
 
               <TextField
                 name="name"
@@ -83,8 +89,13 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
                 fullWidth
               />
 
-              <Typography variant="body2">{article.country}</Typography>
-              <Typography variant="body2">{article.agent}</Typography>
+              <Typography variant="body2" sx={{ display: { xs: 'none', md: 'block' } }}>
+                {article.country}
+              </Typography>
+
+              <Typography variant="body2" sx={{ display: { xs: 'none', md: 'block' } }}>
+                {article.agent}
+              </Typography>
 
               <Box display="flex" alignItems="center" gap={1}>
                 <Typography variant="body2">{article.status}</Typography>

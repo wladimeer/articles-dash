@@ -1,5 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import Dashboard from './pages/private/Dashboard'
 import { ROUTE_CONFIG } from './constants/route'
@@ -8,9 +9,15 @@ import Login from './pages/public/Login'
 import Private from './routes/Private'
 import Public from './routes/Public'
 
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Reddit Sans Condensed", sans-serif'
+  }
+})
+
 const App = () => {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <ToastContainer />
 
       <BrowserRouter>
@@ -26,7 +33,7 @@ const App = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </ThemeProvider>
   )
 }
 
