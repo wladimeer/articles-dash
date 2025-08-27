@@ -1,4 +1,4 @@
-# ArticleDash
+# ArticlesDash
 
 ## Descripción
 
@@ -230,3 +230,4 @@ npm test
 - Asegúrate de tener **Node.js >= 18** instalado.
 - El **backend** se levanta en `http://localhost:3000`.
 - El **frontend** se levanta en `http://localhost:5173` y se conecta al backend configurado.
+
