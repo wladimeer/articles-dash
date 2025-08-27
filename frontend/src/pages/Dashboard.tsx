@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useArticleStore } from '../store/article'
-import ArticlesTable from '../components/ArticleTable'
+import ArticlesTable from '../components/ArticlesTable'
 import EmptyState from '../components/EmptyState'
 
 const Dashboard = () => {
