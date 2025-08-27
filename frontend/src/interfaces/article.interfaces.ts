@@ -1,4 +1,4 @@
-import type { ApiResponse } from './api-response'
+import type { ApiResponse } from './api-response.interface'
 
 interface Article {
   id: number

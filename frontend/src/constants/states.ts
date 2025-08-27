@@ -1,6 +1,6 @@
-const VALID_STATUS = 1 as const
-const PENDING_STATUS = 2 as const
-const INVALID_STATUS = 0 as const
+const VALID_STATUS = '1' as const
+const PENDING_STATUS = '2' as const
+const INVALID_STATUS = '0' as const
 
 const ARTICLE_STATUS = {
   VALID: VALID_STATUS,

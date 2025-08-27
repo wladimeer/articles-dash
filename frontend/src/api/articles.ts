@@ -1,6 +1,6 @@
 import axios from 'axios'
 import type { Article } from '../interfaces/article.interfaces'
-import type { ApiResponse } from '../interfaces/api-response'
+import type { ApiResponse } from '../interfaces/api-response.interface'
 import { STATES } from '../constants/response'
 
 const api = axios.create({

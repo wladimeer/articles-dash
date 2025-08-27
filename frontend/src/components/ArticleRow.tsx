@@ -1,5 +1,6 @@
 import { getFormArticle } from '../utils/validationSchemas'
 import type { ArticleRowProps } from '../interfaces/article-row-props.interface'
+import { TextField, Tooltip, Typography, Box } from '@mui/material'
 import { ARTICLE_STATUS } from '../constants/states'
 import { useArticleStore } from '../store/article'
 import { STATES } from '../constants/response'
@@ -49,48 +50,62 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
       {({ handleChange, values }) => (
         <>
           <AutoSubmit />
-          <Form>
-            <div className="grid grid-cols-7 gap-2 p-2 border-b text-sm">
-              <span>{article.id}</span>
-              <span>{dayjs(article.date).format('DD-MM-YYYY')}</span>
 
-              <input
-                type="text"
+          <Form>
+            <Box
+              display="grid"
+              gridTemplateColumns="1fr 1fr 2fr 1fr 1fr 1fr 1fr"
+              alignItems="center"
+              gap={1}
+              px={2}
+              py={1}
+              borderBottom="1px solid #ddd"
+            >
+              <Typography variant="body2">{article.id}</Typography>
+              <Typography variant="body2">{dayjs(article.date).format('DD-MM-YYYY')}</Typography>
+
+              <TextField
+                name="name"
                 value={values.name}
                 onChange={handleChange}
-                className="border rounded px-1 text-sm w-full"
-                name="name"
+                size="small"
+                variant="outlined"
+                fullWidth
               />
 
-              <input
+              <TextField
+                name="amount"
                 type="number"
                 value={values.amount}
                 onChange={handleChange}
-                className="border rounded px-1 text-sm w-full"
-                name="amount"
+                size="small"
+                variant="outlined"
+                fullWidth
               />
 
-              <span>{article.country}</span>
-              <span>{article.agent}</span>
+              <Typography variant="body2">{article.country}</Typography>
+              <Typography variant="body2">{article.agent}</Typography>
 
-              <div className="flex items-center gap-1">
-                <span>{article.status}</span>
-                {article.statusNumber !== ARTICLE_STATUS.VALID && (
-                  <span
+              <Box display="flex" alignItems="center" gap={1}>
+                <Typography variant="body2">{article.status}</Typography>
+                {String(article.statusNumber) !== ARTICLE_STATUS.VALID && (
+                  <Tooltip
                     title={
-                      article.statusNumber === ARTICLE_STATUS.INVALID
+                      String(article.statusNumber) === ARTICLE_STATUS.INVALID
                         ? 'Monto negativo o fecha inválida'
-                        : article.statusNumber === ARTICLE_STATUS.PENDING
+                        : String(article.statusNumber) === ARTICLE_STATUS.PENDING
                         ? 'Fecha futura, pendiente de procesamiento'
                         : ''
                     }
-                    className="text-red-500 cursor-help"
+                    arrow
                   >
-                    ⚠️
-                  </span>
+                    <Typography component="span" sx={{ color: 'error.main', cursor: 'help' }}>
+                      ⚠️
+                    </Typography>
+                  </Tooltip>
                 )}
-              </div>
-            </div>
+              </Box>
+            </Box>
           </Form>
         </>
       )}

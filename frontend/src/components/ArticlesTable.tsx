@@ -2,11 +2,23 @@ import { useState, useMemo } from 'react'
 import { ARTICLE_STATUS } from '../constants/states'
 import { List, AutoSizer } from 'react-virtualized'
 import type { Article } from '../interfaces/article.interfaces'
+import type { SelectChangeEvent } from '@mui/material/Select'
 import { useArticleStore } from '../store/article'
 import { removeAccents } from '../utils/strings'
 import EmptyState from './EmptyState'
 import ArticleRow from './ArticleRow'
 import dayjs from 'dayjs'
+import {
+  Box,
+  Stack,
+  Button,
+  TextField,
+  Select,
+  MenuItem,
+  Paper,
+  InputLabel,
+  FormControl
+} from '@mui/material'
 
 const ArticlesTable = () => {
   const { articles, message } = useArticleStore()
@@ -14,7 +26,7 @@ const ArticlesTable = () => {
   const [sortBy, setSortBy] = useState<'date' | 'amount' | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
   const [search, setSearch] = useState<string>('')
-  const [statusFilter, setStatusFilter] = useState<number | ''>('')
+  const [statusFilter, setStatusFilter] = useState<string>('')
 
   const toggleSort = (field: 'date' | 'amount') => {
     if (sortBy === field) {
@@ -52,7 +64,7 @@ const ArticlesTable = () => {
     }
 
     if (statusFilter !== '') {
-      result = result.filter((a: Article) => a.statusNumber === statusFilter)
+      result = result.filter((a: Article) => String(a.statusNumber) === statusFilter)
     }
 
     return result
@@ -101,61 +113,53 @@ const ArticlesTable = () => {
   }
 
   return (
-    <div>
-      <div className="flex gap-2 mb-2">
-        <button
-          onClick={() => toggleSort('date')}
-          className="px-2 py-1 border rounded flex items-center gap-1"
-        >
-          Ordenar por Fecha
-          {sortBy === 'date' &&
-            (sortDirection === 'asc' ? '↑' : sortDirection === 'desc' ? '↓' : '')}
-        </button>
+    <Box>
+      <Stack direction="row" spacing={2} mb={2} alignItems="center" flexWrap="wrap">
+        <Button variant="outlined" onClick={() => toggleSort('date')}>
+          Ordenar por Fecha {sortBy === 'date' && (sortDirection === 'asc' ? '↑' : '↓')}
+        </Button>
 
-        <button
-          onClick={() => toggleSort('amount')}
-          className="px-2 py-1 border rounded flex items-center gap-1"
-        >
-          Ordenar por Monto
-          {sortBy === 'amount' &&
-            (sortDirection === 'asc' ? '↑' : sortDirection === 'desc' ? '↓' : '')}
-        </button>
+        <Button variant="outlined" onClick={() => toggleSort('amount')}>
+          Ordenar por Monto {sortBy === 'amount' && (sortDirection === 'asc' ? '↑' : '↓')}
+        </Button>
 
-        <input
-          type="text"
+        <TextField
+          size="small"
           placeholder="Buscar por país o nombre"
-          onChange={({ target: { value } }) => setSearch(value)}
-          className="border rounded px-2 py-1"
           value={search}
+          onChange={({ target: { value } }) => setSearch(value)}
         />
 
-        <select
-          onChange={({ target: { value } }) => setStatusFilter(value === '' ? '' : Number(value))}
-          className="border rounded px-2 py-1"
-          value={statusFilter}
-        >
-          <option value="">Todos los estados</option>
-          <option value={ARTICLE_STATUS.VALID}>Válido</option>
-          <option value={ARTICLE_STATUS.INVALID}>Inválido</option>
-          <option value={ARTICLE_STATUS.PENDING}>Pendiente</option>
-        </select>
+        <FormControl size="small" sx={{ minWidth: 160 }}>
+          <InputLabel>Estado</InputLabel>
+          <Select
+            label="Estado"
+            value={statusFilter}
+            onChange={(e: SelectChangeEvent) => {
+              const v = e.target.value as string
+              setStatusFilter(v)
+            }}
+          >
+            <MenuItem value="">Todos los estados</MenuItem>
+            <MenuItem value={ARTICLE_STATUS.VALID}>Válido</MenuItem>
+            <MenuItem value={ARTICLE_STATUS.INVALID}>Inválido</MenuItem>
+            <MenuItem value={ARTICLE_STATUS.PENDING}>Pendiente</MenuItem>
+          </Select>
+        </FormControl>
 
-        <button onClick={exportToCSV} className="px-2 py-1 border rounded bg-blue-500 text-white">
+        <Button variant="contained" color="primary" onClick={exportToCSV}>
           Exportar CSV
-        </button>
-      </div>
+        </Button>
+      </Stack>
 
-      <div className="h-[500px] border rounded-md shadow">
-        <div className="grid grid-cols-7 font-bold bg-gray-100 px-2 py-2 border-b">
-          <span>ID</span>
-          <span>Fecha</span>
-          <span>Nombre y Apellido</span>
-          <span>Monto</span>
-          <span>País</span>
-          <span>Agente</span>
-          <span>Estado</span>
-        </div>
-
+      <Paper
+        sx={{
+          height: 500,
+          borderRadius: 2,
+          overflow: 'hidden',
+          border: '1px solid #ddd'
+        }}
+      >
         <AutoSizer>
           {({ height, width }) => (
             <List
@@ -166,16 +170,16 @@ const ArticlesTable = () => {
               rowRenderer={({ index, style }) => {
                 const article = filteredArticles[index]
                 return (
-                  <div key={article.id} style={style}>
+                  <Box key={article.id} style={style}>
                     <ArticleRow article={article} />
-                  </div>
+                  </Box>
                 )
               }}
             />
           )}
         </AutoSizer>
-      </div>
-    </div>
+      </Paper>
+    </Box>
   )
 }
 
