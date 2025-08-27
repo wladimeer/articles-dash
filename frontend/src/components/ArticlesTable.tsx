@@ -58,6 +58,44 @@ const ArticlesTable = () => {
     return result
   }, [articles, sortBy, sortDirection, search, statusFilter])
 
+  const exportToCSV = () => {
+    if (!filteredArticles.length) return
+
+    const headers = [
+      'ID',
+      'Fecha',
+      'Nombre y Apellido',
+      'Monto',
+      'Monto USD',
+      'País',
+      'Agente',
+      'Estado'
+    ]
+
+    const rows = filteredArticles.map((a) => [
+      a.id,
+      a.date,
+      a.name,
+      a.amount,
+      a.amountUSD,
+      a.country,
+      a.agent,
+      a.status
+    ])
+
+    const csvRows = [headers, ...rows].map((e) => e.join(',')).join('\n')
+    const csvContent = `data:text/csv;charset=utf-8,${csvRows}`
+    const encodedUri = encodeURI(csvContent)
+    const link = document.createElement('a')
+
+    link.setAttribute('href', encodedUri)
+    link.setAttribute('download', 'articles.csv')
+
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   if (message) {
     return <EmptyState message={message} />
   }
@@ -101,9 +139,23 @@ const ArticlesTable = () => {
           <option value={ARTICLE_STATUS.INVALID}>Inválido</option>
           <option value={ARTICLE_STATUS.PENDING}>Pendiente</option>
         </select>
+
+        <button onClick={exportToCSV} className="px-2 py-1 border rounded bg-blue-500 text-white">
+          Exportar CSV
+        </button>
       </div>
 
       <div className="h-[500px] border rounded-md shadow">
+        <div className="grid grid-cols-7 font-bold bg-gray-100 px-2 py-2 border-b">
+          <span>ID</span>
+          <span>Fecha</span>
+          <span>Nombre y Apellido</span>
+          <span>Monto</span>
+          <span>País</span>
+          <span>Agente</span>
+          <span>Estado</span>
+        </div>
+
         <AutoSizer>
           {({ height, width }) => (
             <List
