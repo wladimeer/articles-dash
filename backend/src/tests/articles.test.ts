@@ -8,12 +8,12 @@ jest.mock('fs-extra')
 const articlesPath = path.join(__dirname, '../data/articles.json')
 const ratesPath = path.join(__dirname, '../data/rates.json')
 
-describe('obtener todos los artículos', () => {
+describe('getAllArticles', () => {
   beforeEach(() => {
     jest.resetAllMocks()
   })
 
-  it('debe asignar correctamente el estado según las reglas de negocio', async () => {
+  it('must correctly assign status according to business rules', async () => {
     const mockArticles = [
       {
         id: 1,
@@ -56,7 +56,7 @@ describe('obtener todos los artículos', () => {
     expect(processed.find((a) => a.id === 3)).toBeUndefined() // Excluido
   })
 
-  it('debe desencriptar correctamente el nombre del artículo', async () => {
+  it('must correctly decrypt the item name', async () => {
     const originalName = 'Artículo Secreto'
     const encryptedName = encrypt(originalName)
 
@@ -84,7 +84,7 @@ describe('obtener todos los artículos', () => {
     expect(processed[0]?.name).toBe(originalName) // Verifica que el nombre fue desencriptado
   })
 
-  it('debe excluir artículos sin tasa de conversión disponible', async () => {
+  it('should exclude items with no conversion rate available', async () => {
     const mockArticles = [
       {
         id: 1,

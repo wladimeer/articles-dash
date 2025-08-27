@@ -23,7 +23,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "types": ["react", "react-dom"],
+    /* Module Resolution */
+    "types": ["react", "react-dom", "vitest"],
     "typeRoots": ["./node_modules/@types"]
   },
   "include": ["src"]
