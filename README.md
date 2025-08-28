@@ -168,7 +168,6 @@ npm test
   - Renderizado de tabla de artículos.
   - Filtrado por búsqueda y estado.
   - Ordenamiento por fecha y monto.
-  - Exportación a CSV.
 
 - Ejecutar pruebas unitarias/integración con:
 
@@ -256,3 +255,4 @@ npm run cypress:open
 - El **backend** se levanta en `http://localhost:3000`.
 - El **frontend** se levanta en `http://localhost:5173` y se conecta al backend configurado.
 - Las pruebas E2E se ejecutan sobre el frontend levantado y requieren que la API del backend esté activa.
+
