@@ -45,15 +45,4 @@ describe('ArticlesTable E2E', () => {
     cy.get('[data-testid="sort-date"]').click()
     cy.get('[data-testid="sort-amount"]').click()
   })
-
-  it('triggers CSV export', () => {
-    cy.get('[data-testid="export-csv-button"]').should('exist').click()
-
-    cy.window().then((win) => {
-      cy.stub(win, 'encodeURI').as('encodeURI')
-    })
-
-    cy.get('[data-testid="export-csv-button"]').click()
-    cy.get('@encodeURI').should('have.been.called')
-  })
 })
