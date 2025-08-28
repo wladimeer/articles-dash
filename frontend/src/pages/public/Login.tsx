@@ -79,6 +79,7 @@ const Login = () => {
                 <Stack spacing={3} mt={3}>
                   <Box>
                     <TextField
+                      data-testid="username-input"
                       fullWidth
                       id="username-input"
                       placeholder="Escribe tu nombre de usuario"
@@ -101,6 +102,7 @@ const Login = () => {
 
                   <Box>
                     <TextField
+                      data-testid="password-input"
                       fullWidth
                       id="password-input"
                       placeholder="Escribe tu contraseña"
@@ -121,7 +123,13 @@ const Login = () => {
                     )}
                   </Box>
 
-                  <Button fullWidth type="submit" variant="contained" disabled={isSubmitting}>
+                  <Button
+                    data-testid="login-button"
+                    fullWidth
+                    type="submit"
+                    variant="contained"
+                    disabled={isSubmitting}
+                  >
                     Iniciar sesión
                   </Button>
                 </Stack>

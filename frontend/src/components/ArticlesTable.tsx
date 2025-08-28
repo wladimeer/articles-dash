@@ -117,6 +117,7 @@ const ArticlesTable = () => {
     <Box>
       <Stack direction="row" flexWrap="wrap" gap={2} rowGap={1} mb={2} alignItems="center">
         <Button
+          data-testid="sort-date"
           variant="outlined"
           onClick={() => toggleSort('date')}
           sx={{ flex: { xs: '1 1 100%', sm: '0 auto' } }}
@@ -125,6 +126,7 @@ const ArticlesTable = () => {
         </Button>
 
         <Button
+          data-testid="sort-amount"
           variant="outlined"
           onClick={() => toggleSort('amount')}
           sx={{ flex: { xs: '1 1 100%', sm: '0 auto' } }}
@@ -133,6 +135,7 @@ const ArticlesTable = () => {
         </Button>
 
         <TextField
+          data-testid="search-input"
           size="small"
           placeholder="Buscar por país o nombre"
           value={search}
@@ -141,6 +144,7 @@ const ArticlesTable = () => {
         />
 
         <FormControl
+          data-testid="status-filter"
           size="small"
           sx={{ flex: { xs: '1 1 100%', sm: '0 auto' }, minWidth: { sm: 160 } }}
         >
@@ -158,6 +162,7 @@ const ArticlesTable = () => {
         </FormControl>
 
         <Button
+          data-testid="export-csv-button"
           variant="contained"
           color="primary"
           onClick={exportToCSV}

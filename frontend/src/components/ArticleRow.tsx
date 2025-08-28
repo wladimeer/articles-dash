@@ -53,6 +53,7 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
 
           <Form>
             <Box
+              data-testid="article-row"
               display="grid"
               gridTemplateColumns={{
                 xs: '0.5fr 1fr 1fr 1fr',
@@ -72,6 +73,7 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
               </Typography>
 
               <TextField
+                data-testid="article-name"
                 name="name"
                 value={values.name}
                 onChange={handleChange}
@@ -92,7 +94,11 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
                 sx={{ height: '36px' }}
               />
 
-              <Typography variant="body2" sx={{ display: { xs: 'none', md: 'block' } }}>
+              <Typography
+                data-testid="article-country"
+                variant="body2"
+                sx={{ display: { xs: 'none', md: 'block' } }}
+              >
                 {article.country}
               </Typography>
 
@@ -101,7 +107,9 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
               </Typography>
 
               <Box display="flex" alignItems="center" gap={1}>
-                <Typography variant="body2">{article.status}</Typography>
+                <Typography data-testid="article-status" variant="body2">
+                  {article.status}
+                </Typography>
                 {String(article.statusNumber) !== ARTICLE_STATUS.VALID && (
                   <Tooltip
                     title={
