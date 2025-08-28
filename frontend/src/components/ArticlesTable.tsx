@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { ARTICLE_STATUS } from '../constants/states'
-import { List, AutoSizer } from 'react-virtualized'
+import { FixedSizeList as List } from 'react-window'
 import type { Article } from '../interfaces/article.interfaces'
 import type { SelectChangeEvent } from '@mui/material/Select'
 import { useArticleStore } from '../store/article'
@@ -17,7 +17,8 @@ import {
   MenuItem,
   Paper,
   InputLabel,
-  FormControl
+  FormControl,
+  Typography
 } from '@mui/material'
 
 const ArticlesTable = () => {
@@ -177,24 +178,40 @@ const ArticlesTable = () => {
             border: '1px solid #ddd'
           }}
         >
-          <AutoSizer>
-            {({ height, width }) => (
-              <List
-                width={width}
-                height={height}
-                rowHeight={50}
-                rowCount={filteredArticles.length}
-                rowRenderer={({ index, style }) => {
-                  const article = filteredArticles[index]
-                  return (
-                    <Box key={article.id} style={style}>
-                      <ArticleRow article={article} />
-                    </Box>
-                  )
-                }}
-              />
-            )}
-          </AutoSizer>
+          <Box
+            display="grid"
+            gridTemplateColumns={{
+              xs: '0.5fr 1fr 1fr 1fr',
+              md: '0.5fr 1fr 2fr 1fr 1fr 1fr 1fr'
+            }}
+            alignItems="center"
+            gap={1}
+            px={2}
+            py={1}
+            mr={2}
+            fontWeight="bold"
+            borderBottom="1px solid #000"
+            minHeight="50px"
+          >
+            <Typography>ID</Typography>
+            <Typography sx={{ display: { xs: 'none', md: 'block' } }}>Fecha</Typography>
+            <Typography>Nombre</Typography>
+            <Typography>Monto</Typography>
+            <Typography sx={{ display: { xs: 'none', md: 'block' } }}>País</Typography>
+            <Typography sx={{ display: { xs: 'none', md: 'block' } }}>Agente</Typography>
+            <Typography>Estado</Typography>
+          </Box>
+
+          <List height={450} itemCount={filteredArticles.length} itemSize={50} width="100%">
+            {({ index, style }) => {
+              const article = filteredArticles[index]
+              return (
+                <Box key={article.id} style={style}>
+                  <ArticleRow article={article} />
+                </Box>
+              )
+            }}
+          </List>
         </Paper>
       )}
     </Box>

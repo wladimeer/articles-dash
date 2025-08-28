@@ -55,13 +55,14 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
             <Box
               display="grid"
               gridTemplateColumns={{
-                xs: 'auto 1fr 1fr 1fr',
-                md: '1fr 1fr 2fr 1fr 1fr 1fr 1fr'
+                xs: '0.5fr 1fr 1fr 1fr',
+                md: '0.5fr 1fr 2fr 1fr 1fr 1fr 1fr'
               }}
               alignItems="center"
               gap={1}
               px={2}
               py={1}
+              minHeight="50px"
               borderBottom="1px solid #ddd"
             >
               <Typography variant="body2">{article.id}</Typography>
@@ -77,6 +78,7 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
                 size="small"
                 variant="outlined"
                 fullWidth
+                sx={{ height: '36px' }}
               />
 
               <TextField
@@ -87,6 +89,7 @@ const ArticleRow = ({ article }: ArticleRowProps) => {
                 size="small"
                 variant="outlined"
                 fullWidth
+                sx={{ height: '36px' }}
               />
 
               <Typography variant="body2" sx={{ display: { xs: 'none', md: 'block' } }}>
