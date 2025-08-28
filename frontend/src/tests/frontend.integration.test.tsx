@@ -40,32 +40,20 @@ vi.mock('../store/article', () => ({
     } satisfies ArticleStore)
 }))
 
-vi.mock('react-virtualized', async () => {
-  const actual = await vi.importActual<typeof import('react-virtualized')>('react-virtualized')
+vi.mock('react-window', async () => {
+  const actual = await vi.importActual<typeof import('react-window')>('react-window')
   return {
     ...actual,
-    AutoSizer: ({
+    FixedSizeList: ({
+      itemCount,
       children
     }: {
-      children: (size: { width: number; height: number }) => ReactNode
-    }) => children({ width: 1000, height: 500 }),
-    List: ({
-      rowCount,
-      rowRenderer
-    }: {
-      rowCount: number
-      rowRenderer: (params: {
-        index: number
-        style: React.CSSProperties
-        key?: string
-      }) => ReactNode
-    }) => (
-      <>
-        {Array.from({ length: rowCount }).map((_, index) =>
-          rowRenderer({ index, style: {}, key: String(index) })
-        )}
-      </>
-    )
+      height: number
+      itemCount: number
+      itemSize: number
+      width: number | string
+      children: (props: { index: number; style: React.CSSProperties }) => ReactNode
+    }) => <>{Array.from({ length: itemCount }).map((_, index) => children({ index, style: {} }))}</>
   }
 })
 
