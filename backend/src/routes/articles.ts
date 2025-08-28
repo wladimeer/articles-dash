@@ -28,6 +28,15 @@ router.put('/:id', async (req: Request<{ id: string }>, res: Response) => {
   try {
     const id = Number(req.params.id)
     const updates = req.body
+
+    if (updates.amount !== undefined && updates.amount <= 0) {
+      return res.status(400).json({
+        status: STATES.ERROR,
+        message: `El monto del artículo ${id} debe ser mayor a 0`,
+        data: null
+      })
+    }
+
     const updated = await updateArticle(id, updates)
 
     if (!updated) {
