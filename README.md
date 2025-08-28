@@ -46,6 +46,7 @@ Incluye un sistema de autenticación básico y una interfaz amigable construida 
 - **React Toastify** → Notificaciones.
 - **React Virtualized** → Optimización de tablas/listas grandes.
 - **React Testing Library + Vitest** → Pruebas unitarias y de integración.
+- **Cypress** → Pruebas E2E para flujos completos.
 
 ---
 
@@ -130,8 +131,18 @@ npm run preview
 
 4. **Ejecutar pruebas en frontend**:
 
+- **Unitarias/Integración (Vitest + RTL)**:
+
 ```bash
 npm test
+```
+
+- **End-to-End (Cypress)**:
+
+```bash
+npm run cypress:open
+# o para correr en CLI
+npm run cypress:run
 ```
 
 ---
@@ -151,11 +162,25 @@ npm test
 ### Frontend
 
 - Se utilizan **Vitest + React Testing Library** para testear componentes y hooks.
-- Ejecutar con:
+- Se utilizan **Cypress** para pruebas E2E que incluyen:
+
+  - Inicio de sesión.
+  - Renderizado de tabla de artículos.
+  - Filtrado por búsqueda y estado.
+  - Ordenamiento por fecha y monto.
+  - Exportación a CSV.
+
+- Ejecutar pruebas unitarias/integración con:
 
 ```bash
 cd frontend
 npm test
+```
+
+- Ejecutar pruebas E2E con:
+
+```bash
+npm run cypress:open
 ```
 
 ---
@@ -196,7 +221,6 @@ npm test
   ├── package.json
   ├── tsconfig.json
   └── vite.config.ts
-
 ```
 
 ---
@@ -215,13 +239,14 @@ npm test
 
 ### 🔹 Frontend
 
-| Acción           | Comando           |
-| ---------------- | ----------------- |
-| Instalar deps    | `npm install`     |
-| Correr en dev    | `npm run dev`     |
-| Build producción | `npm run build`   |
-| Preview build    | `npm run preview` |
-| Ejecutar tests   | `npm test`        |
+| Acción           | Comando                |
+| ---------------- | ---------------------- |
+| Instalar deps    | `npm install`          |
+| Correr en dev    | `npm run dev`          |
+| Build producción | `npm run build`        |
+| Preview build    | `npm run preview`      |
+| Ejecutar tests   | `npm test`             |
+| E2E (Cypress)    | `npm run cypress:open` |
 
 ---
 
@@ -230,4 +255,4 @@ npm test
 - Asegúrate de tener **Node.js >= 18** instalado.
 - El **backend** se levanta en `http://localhost:3000`.
 - El **frontend** se levanta en `http://localhost:5173` y se conecta al backend configurado.
-
+- Las pruebas E2E se ejecutan sobre el frontend levantado y requieren que la API del backend esté activa.
