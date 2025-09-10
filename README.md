@@ -44,7 +44,7 @@ Incluye un sistema de autenticación básico y una interfaz amigable construida 
 - **Formik + Yup** → Formularios y validaciones.
 - **Axios** → Cliente HTTP.
 - **React Toastify** → Notificaciones.
-- **React Virtualized** → Optimización de tablas/listas grandes.
+- **React Window** → Optimización de tablas/listas grandes.
 - **React Testing Library + Vitest** → Pruebas unitarias y de integración.
 - **Cypress** → Pruebas E2E para flujos completos.
 
@@ -255,4 +255,5 @@ npm run cypress:open
 - El **backend** se levanta en `http://localhost:3000`.
 - El **frontend** se levanta en `http://localhost:5173` y se conecta al backend configurado.
 - Las pruebas E2E se ejecutan sobre el frontend levantado y requieren que la API del backend esté activa.
+
 
